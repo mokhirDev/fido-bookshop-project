@@ -13,7 +13,7 @@ public abstract class BaseEntity {
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    protected Long id;
 
     @Column(name = "created_at", updatable = false)
     protected LocalDateTime createdAt;

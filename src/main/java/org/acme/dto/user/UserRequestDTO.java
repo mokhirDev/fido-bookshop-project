@@ -2,6 +2,8 @@ package org.acme.dto.user;
 
 
 import lombok.*;
+import org.acme.dto.book.BookRequestDTO;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,5 +19,5 @@ public class UserRequestDTO {
     public String password;
     public String email;
     public String phone;
-
+    public Set<BookRequestDTO> books;
 }
