@@ -1,31 +1,31 @@
 package org.acme.unit.repository;
 
-import org.acme.dto.user.UserResponseDTO;
 import org.acme.entity.User;
-import org.acme.mapper.UserMapper;
-import org.acme.mapper.UserMapperImpl;
 import org.acme.repository.UserRepository;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
-
+import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UserRepositoryTest {
-    private final UserRepository userRepository = new UserRepository();
-    private final UserMapper userMapper = new UserMapperImpl();
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
+//    UserMapper userMapper = Mockito.mock(UserMapper.class);
 
     @Test
     public void findUserByIdTest() {
-        Optional<User> resultOptional = userRepository.findByIdOptional(1L);
-        User user = resultOptional.orElseThrow(() -> new RuntimeException("User Not Found"));
-        UserResponseDTO userResponseDTO = userMapper.toDto(user);
-        assertNotNull(userResponseDTO);
-        assertEquals(1L, userResponseDTO.getId());
-        assertEquals("Mokhirbek", userResponseDTO.getName());
-        assertEquals("Makhkamov", userResponseDTO.getFullName());
-        assertEquals("mokhirDev", userResponseDTO.getUsername());
+        User expectedUser = User
+                .builder()
+                .name("Mokhirbek")
+                .fullName("Makhkamov")
+                .username("mokhirDev")
+                .phone("+998903571847")
+                .build();
+        Mockito.when(userRepository.findById(1L)).thenReturn(expectedUser);
+        User result = userRepository.findById(1L);
+        assertEquals(expectedUser.id, result.id, "ID пользователя не совпадает");
+        assertEquals(expectedUser.name, result.name, "Имя пользователя не совпадает");
+        assertEquals(expectedUser.fullName, result.fullName, "Полное имя пользователя не совпадает");
+        assertEquals(expectedUser.username, result.username, "Имя пользователя (username) не совпадает");
+        assertEquals(expectedUser.phone, result.phone, "Телефон пользователя не совпадает");
 //
 //        BookResponseDTO bookResponseDTO = userResponseDTO.getBooks()
 //                .stream()

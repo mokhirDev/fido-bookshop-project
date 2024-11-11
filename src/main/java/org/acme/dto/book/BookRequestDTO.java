@@ -1,8 +1,10 @@
 package org.acme.dto.book;
 
 import lombok.*;
+import org.acme.dto.user.UserRequestDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,4 +18,5 @@ public class BookRequestDTO {
     public String title;
     public LocalDate published;
     public BigDecimal price;
+    public Set<UserRequestDTO> authors;
 }

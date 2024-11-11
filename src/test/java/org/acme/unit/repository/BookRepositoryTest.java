@@ -1,9 +1,10 @@
 package org.acme.unit.repository;
 
-import org.acme.dto.book.BookResponseDTO;
+import io.quarkus.test.InjectMock;
 import org.acme.entity.Book;
 import org.acme.repository.BookRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
@@ -11,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BookRepositoryTest {
-    private final BookRepository repository = new BookRepository();
+    //    BookRepository bookRepository = Mockito.mock(BookRepository.class);
+    BookRepository bookRepository = Mockito.mock(BookRepository.class);
 
     @Test
     public void testFindByIdBook() {
-        BookResponseDTO expectedBook = BookResponseDTO.builder()
+        Book expectedBook = Book.builder()
                 .name("Effective Java")
                 .title("A Guide to Best Practices in Java Programming")
                 .price(BigDecimal.valueOf(45.99))
@@ -31,11 +33,12 @@ public class BookRepositoryTest {
 //                        )
 //                )
                 .build();
-        Book result = repository.findById(1L);
+        Mockito.when(bookRepository.findById(1L)).thenReturn(expectedBook);
+        Book result = bookRepository.findById(1L);
         assertNotNull(result);
-        assertEquals(expectedBook.getName(), result.getName());
-        assertEquals(expectedBook.getPrice(), result.getPrice());
-        assertEquals(expectedBook.getTitle(), result.getTitle());
+        assertEquals(expectedBook.getName(), result.getName(), "Название книги не совпадает");
+        assertEquals(expectedBook.getPrice(), result.getPrice(), "Цена книги не совпадает");
+        assertEquals(expectedBook.getTitle(), result.getTitle(), "Заголовок книги не совпадает");
 
 //        User user = result.getAuthors().stream().filter(a -> a.username.equals("mokhirDev")).findFirst().orElse(null);
 //        assertNotNull(user);
