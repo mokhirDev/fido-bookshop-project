@@ -3,8 +3,10 @@ package org.acme.dto.book;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.acme.dto.user.UserResponseDTO;
+import org.acme.entity.User;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 @Getter
@@ -18,7 +20,7 @@ public class BookResponseDTO {
     public String name;
     public String title;
     @JsonIgnoreProperties("books")
-    public Set<UserResponseDTO> authors;
-    public Date published;
+    public Set<User> authors;
+    public LocalDate published;
     public BigDecimal price;
 }

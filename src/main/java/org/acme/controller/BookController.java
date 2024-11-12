@@ -32,6 +32,7 @@ public class BookController extends BaseController<BookRequestDTO, BookResponseD
     @Path("/find/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findBookById(@PathParam("id") Long id) {
-        return Response.ok(bookService.findByIdWithRelatedEntities(id)).build();
+//        return Response.ok(bookService.findByIdWithRelatedEntities(id)).build();
+        return Response.ok(bookService.findById(id)).build();
     }
 }

@@ -37,15 +37,15 @@ public class UserService extends BaseService<UserRequestDTO, UserResponseDTO, Us
         return userMapper;
     }
 
-    @Override
-    protected Set<BookResponseDTO> getRelatedEntities(User entity) {
-        Set<Book> books = entity.getBooks();
-        return bookMapper.toDTOSet(books);
-    }
+//    @Override
+//    protected Set<BookResponseDTO> getRelatedEntities(User entity) {
+//        Set<Book> books = entity.getBooks();
+//        return bookMapper.toDTOSet(books);
+//    }
 
-    @Override
-    protected void setRelatedDTOs(UserResponseDTO dto, Set<BookResponseDTO> relatedDTOs) {
-        dto.setBooks(relatedDTOs);
-    }
+//    @Override
+//    protected void setRelatedDTOs(UserResponseDTO dto, Set<BookResponseDTO> relatedDTOs) {
+//        dto.setBooks(relatedDTOs);
+//    }
 
 }

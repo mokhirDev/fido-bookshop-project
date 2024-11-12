@@ -1,4 +1,4 @@
-package org.acme.unit.repository;
+package org.acme.integration.repository;
 
 import org.acme.entity.User;
 import org.acme.repository.UserRepository;
@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserRepositoryTest {
     UserRepository userRepository = Mockito.mock(UserRepository.class);
-//    UserMapper userMapper = Mockito.mock(UserMapper.class);
 
     @Test
     public void findUserByIdTest() {
@@ -26,14 +25,5 @@ public class UserRepositoryTest {
         assertEquals(expectedUser.fullName, result.fullName, "Полное имя пользователя не совпадает");
         assertEquals(expectedUser.username, result.username, "Имя пользователя (username) не совпадает");
         assertEquals(expectedUser.phone, result.phone, "Телефон пользователя не совпадает");
-//
-//        BookResponseDTO bookResponseDTO = userResponseDTO.getBooks()
-//                .stream()
-//                .filter(b -> b.getId().equals(1L)).findFirst().get();
-//        assertNotNull(bookResponseDTO);
-//        assertEquals(1L, bookResponseDTO.getId());
-//        assertEquals("Effective Java", bookResponseDTO.getName());
-//        assertEquals("A Guide to Best Practices in Java Programming", bookResponseDTO.getTitle());
-
     }
 }

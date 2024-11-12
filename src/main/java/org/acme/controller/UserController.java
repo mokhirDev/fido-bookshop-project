@@ -32,6 +32,7 @@ public class UserController extends BaseController<UserRequestDTO, UserResponseD
     @Path("/get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findUserById(@PathParam("id") Long id) {
-        return Response.ok(userService.findByIdWithRelatedEntities(id)).build();
+//        return Response.ok(userService.findByIdWithRelatedEntities(id)).build();
+        return Response.ok(userService.findById(id)).build();
     }
 }
