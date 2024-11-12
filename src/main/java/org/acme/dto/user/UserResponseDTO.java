@@ -3,6 +3,7 @@ package org.acme.dto.user;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.acme.dto.book.BookResponseDTO;
+import org.acme.entity.Book;
 
 import java.util.Set;
 
@@ -20,6 +21,6 @@ public class UserResponseDTO {
     public String password;
     public String email;
     public String phone;
-    @JsonIgnoreProperties("authors")
-    private Set<BookResponseDTO> books;
+//    @JsonIgnoreProperties("authors")
+    private Set<Book> books;
 }
