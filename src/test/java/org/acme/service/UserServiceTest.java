@@ -1,4 +1,4 @@
-package org.acme.mockito.service;
+package org.acme.service;
 
 import org.acme.dto.book.BookRequestDTO;
 import org.acme.dto.user.UserRequestDTO;
