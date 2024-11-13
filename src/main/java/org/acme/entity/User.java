@@ -18,6 +18,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User extends BaseEntity implements Serializable {
+    @Id
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
     @Serial
     private static final long serialVersionUID = 4773805991841170855L;
     public String name;
