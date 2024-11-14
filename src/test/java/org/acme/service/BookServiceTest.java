@@ -6,7 +6,6 @@ import org.acme.dto.book.BookResponseDTO;
 import org.acme.entity.Book;
 import org.acme.mapper.BookMapper;
 import org.acme.repository.BookRepository;
-import org.acme.service.BookService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.InjectMocks;
@@ -32,7 +31,6 @@ public class BookServiceTest {
     public void testAddBook() {
         LocalDate published = LocalDate.now();
         BookRequestDTO bookRequestDTO = BookRequestDTO.builder()
-                .id(22L)
                 .name("Test book")
                 .price(BigDecimal.valueOf(12000.0))
                 .published(published)
@@ -40,7 +38,6 @@ public class BookServiceTest {
                 .build();
 
         BookResponseDTO bookResponseDTO = BookResponseDTO.builder()
-                .id(22L)
                 .name("Test book")
                 .price(BigDecimal.valueOf(12000.0))
                 .published(published)

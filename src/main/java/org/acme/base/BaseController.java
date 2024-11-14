@@ -23,7 +23,7 @@ public abstract class BaseController<Req, Res, ID, RelatedDTO> {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(Req dto) {
+    public Response create( Req dto) {
         return Response.ok(getService().save(dto)).build();
     }
 

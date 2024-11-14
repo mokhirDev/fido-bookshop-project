@@ -15,10 +15,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookRequestDTO {
-    public Long id;
+//    public Long id;
     public String name;
     public String title;
     public LocalDate published;
     public BigDecimal price;
-    public Set<User> authors;
+//    public Set<User> authors;
 }

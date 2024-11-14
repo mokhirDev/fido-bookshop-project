@@ -49,6 +49,7 @@ public class UserRepositoryTest {
         User savedBook = userRepository.findById(expected.getId());
         assertNotNull(savedBook, "Сохранённая книга должна быть найдена");
         assertUserEntityEquals(expected, savedBook);
+
     }
 
     @Test

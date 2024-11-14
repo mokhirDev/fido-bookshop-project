@@ -33,7 +33,7 @@ public class User extends BaseEntity implements Serializable {
     public String email;
     @Column(unique = true)
     public String phone;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_books",
             joinColumns = @JoinColumn(name = "users_id"),
