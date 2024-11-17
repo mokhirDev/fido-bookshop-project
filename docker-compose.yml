@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    container_name: bookshop_2
+    networks:
+      - bookshop-network-2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 0211
+      POSTGRES_DB: bookshop_db_2
+    ports:
+      - "9090:5432"
+
+  quarkus-app:
+    image: quarkus/fido-bookshop-project-jvm
+    container_name: bookshop-project-2
+    networks:
+      - bookshop-network-2
+    ports:
+      - "1010:8080"
+    environment:
+      DB_HOST: bookshop_2
+
+networks:
+  bookshop-network-2:
+    driver: bridge
