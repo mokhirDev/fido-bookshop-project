@@ -8,12 +8,10 @@ import org.acme.base.EntityMapper;
 import org.acme.dto.book.BookResponseDTO;
 import org.acme.dto.user.UserRequestDTO;
 import org.acme.dto.user.UserResponseDTO;
-import org.acme.entity.Book;
 import org.acme.entity.User;
 import org.acme.mapper.BookMapper;
 import org.acme.mapper.UserMapper;
 import org.acme.repository.UserRepository;
-import java.util.Set;
 
 @ApplicationScoped
 public class UserService extends BaseService<UserRequestDTO, UserResponseDTO, User, Long, BookResponseDTO> {

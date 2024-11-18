@@ -3,10 +3,7 @@ package org.acme.base;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.WebApplicationException;
-
 import java.util.Optional;
-import java.util.Set;
 
 public abstract class BaseService<Req, Res, E, ID, RelatedDTO> {
 
@@ -33,7 +30,7 @@ public abstract class BaseService<Req, Res, E, ID, RelatedDTO> {
         return getMapper().toDto(entity);
     }
 
-
+    @Transactional
     public Optional<Res> findById(ID id) {
         if (id == null) {
             throw new IllegalArgumentException("ID cannot be null");

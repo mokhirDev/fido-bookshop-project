@@ -1,6 +1,7 @@
 package org.acme.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.persistence.*;
 import lombok.*;
 import org.acme.base.BaseEntity;
@@ -19,6 +20,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@RegisterForReflection
 public class Book extends BaseEntity implements Serializable {
     @Id
     @Column(unique = true)

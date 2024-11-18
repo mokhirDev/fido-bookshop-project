@@ -1,12 +1,12 @@
 package org.acme.dto.book;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.*;
 import org.acme.dto.user.UserRequestDTO;
 import org.acme.entity.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -14,6 +14,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@RegisterForReflection
 public class BookRequestDTO {
 //    public Long id;
     public String name;

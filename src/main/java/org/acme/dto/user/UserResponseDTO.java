@@ -1,6 +1,7 @@
 package org.acme.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.*;
 import org.acme.dto.book.BookResponseDTO;
 import org.acme.entity.Book;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@RegisterForReflection
 public class UserResponseDTO {
     public Long id;
     public String name;

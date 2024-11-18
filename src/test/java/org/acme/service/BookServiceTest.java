@@ -1,6 +1,8 @@
 package org.acme.service;
 
 
+import io.quarkus.test.TestTransaction;
+import jakarta.transaction.Transactional;
 import org.acme.dto.book.BookRequestDTO;
 import org.acme.dto.book.BookResponseDTO;
 import org.acme.entity.Book;
@@ -19,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
+@TestTransaction
 public class BookServiceTest {
     @Mock
     BookRepository bookRepository;

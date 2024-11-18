@@ -10,7 +10,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
 
     @Override
     public Response toResponse(Exception exception) {
-        System.err.println("Handled exception: " + exception.getMessage());
+        System.err.println("Handled exception" + exception.getMessage());
 
         if (exception instanceof WebApplicationException) {
             WebApplicationException webEx = (WebApplicationException) exception;

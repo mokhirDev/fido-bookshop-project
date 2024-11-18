@@ -1,6 +1,7 @@
 package org.acme.dto.user;
 
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.*;
 import org.acme.dto.book.BookRequestDTO;
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@RegisterForReflection
 public class UserRequestDTO {
     public Long id;
     public String name;

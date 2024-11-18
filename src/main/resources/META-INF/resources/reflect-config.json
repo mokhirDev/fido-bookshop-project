@@ -1,0 +1,32 @@
+[
+  {
+    "name": "org.acme.entity.User",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.acme.dto.user.UserResponseDTO",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.acme.dto.user.UserRequestDTO",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.acme.entity.Book",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.acme.dto.user.UserRequestDTO",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "org.acme.dto.user.UserResponseDTO",
+    "allDeclaredConstructors": true,
+    "allDeclaredFields": true
+  }
+]

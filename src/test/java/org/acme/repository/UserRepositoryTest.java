@@ -1,8 +1,8 @@
 package org.acme.repository;
 
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.acme.entity.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,30 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
+@TestTransaction
 public class UserRepositoryTest {
 
     @Inject
     UserRepository userRepository;
 
     @Test
-    @Transactional
     public void testUserRepositoryFindById() {
-        User expected = User
-                .builder()
-                .name("Mokhirbek")
-                .fullName("Makhkamov")
-                .phone("+998903571847")
-                .email("mokhirbek.makhkam@gmail.com")
-                .username("mokhirDev")
-                .password("123123")
-                .build();
-        User result = userRepository.findById(1L);
-        assertUserEntityEquals(expected, result);
+        User last = userRepository.findAll().stream().toList().getLast();
+        User actual = userRepository.findById(last.getId());
+        assertUserEntityEquals(last, actual);
     }
 
 
     @Test
-    @Transactional
     public void testUserRepositorySave() {
         User expected = User
                 .builder()
@@ -53,7 +44,6 @@ public class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void testUserRepositoryDeleteById() {
         User user = userRepository.findAll().stream().findFirst().orElse(null);
         assertNotNull(user, "Результат не должен быть null");

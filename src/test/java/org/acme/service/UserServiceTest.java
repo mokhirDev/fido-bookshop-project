@@ -1,12 +1,12 @@
 package org.acme.service;
 
+import io.quarkus.test.TestTransaction;
 import org.acme.dto.book.BookRequestDTO;
 import org.acme.dto.user.UserRequestDTO;
 import org.acme.dto.user.UserResponseDTO;
 import org.acme.entity.User;
 import org.acme.mapper.UserMapper;
 import org.acme.repository.UserRepository;
-import org.acme.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,16 +14,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
+@TestTransaction
 public class UserServiceTest {
     @InjectMocks
     UserService userService;

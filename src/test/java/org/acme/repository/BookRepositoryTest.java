@@ -1,24 +1,22 @@
 package org.acme.repository;
 
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.acme.entity.Book;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
+@TestTransaction
 public class BookRepositoryTest {
 
     @Inject
     BookRepository bookRepository;
 
     @Test
-    @Transactional
     public void testBookRepositoryFindById() {
         LocalDate published = LocalDate.of(2018, 1, 1);
         Book expected = Book.builder()
@@ -27,20 +25,19 @@ public class BookRepositoryTest {
                 .published(published)
                 .title("A Guide to Best Practices in Java Programming")
                 .build();
-
-        Book result = bookRepository.findById(1L);
-        assertBookEntityEquals(expected, result);
+        bookRepository.persist(expected);
+        Book actual = bookRepository.findById(expected.getId());
+        assertBookEntityEquals(expected, actual);
     }
 
 
     @Test
-    @Transactional
     public void testBookRepositorySave() {
         Book newBook = Book
                 .builder()
                 .name("Test Book Name")
                 .title("Test Book Title")
-                .published(LocalDate.now())
+                .published(LocalDate.of(2018, 1, 1))
                 .price(BigDecimal.valueOf(99.99))
                 .build();
         bookRepository.persist(newBook);
@@ -51,7 +48,6 @@ public class BookRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void testBookRepositoryDeleteById() {
         Book book = bookRepository.findAll().stream().findFirst().orElse(null);
         assertNotNull(book, "Результат не должен быть null");
