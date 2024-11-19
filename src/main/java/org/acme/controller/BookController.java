@@ -1,5 +1,6 @@
 package org.acme.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -31,6 +32,7 @@ public class BookController extends BaseController<BookRequestDTO, BookResponseD
     @GET
     @Path("/find/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"admin"})
     public Response findBookById(@PathParam("id") Long id) {
 //        return Response.ok(bookService.findByIdWithRelatedEntities(id)).build();
         return Response.ok(bookService.findById(id)).build();

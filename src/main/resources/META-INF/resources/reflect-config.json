@@ -28,5 +28,8 @@
     "name": "org.acme.dto.user.UserResponseDTO",
     "allDeclaredConstructors": true,
     "allDeclaredFields": true
+  },
+  {
+    "pattern": "import.sql"
   }
 ]

@@ -3,6 +3,8 @@ package org.acme.base;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
+
+import java.util.List;
 import java.util.Optional;
 
 public abstract class BaseService<Req, Res, E, ID, RelatedDTO> {
@@ -52,6 +54,19 @@ public abstract class BaseService<Req, Res, E, ID, RelatedDTO> {
             }
         } catch (PersistenceException e) {
             throw new RuntimeException("Failed to delete entity with ID " + id, e);
+        }
+    }
+
+    @Transactional
+    public List<Res> findAll() {
+        try {
+            List<E> list = getRepository().findAll().stream().toList();
+            if (list.isEmpty()) {
+                throw new EntityNotFoundException("Entities not found");
+            }
+            return getMapper().toDtoList(list);
+        } catch (PersistenceException e) {
+            throw new RuntimeException("Failed finding entities", e);
         }
     }
 

@@ -1,5 +1,6 @@
 package org.acme.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -31,6 +32,7 @@ public class UserController extends BaseController<UserRequestDTO, UserResponseD
     @GET
     @Path("/get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     public Response findUserById(@PathParam("id") Long id) {
 //        return Response.ok(userService.findByIdWithRelatedEntities(id)).build();
         return Response.ok(userService.findById(id)).build();
