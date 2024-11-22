@@ -1,0 +1,183 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "Default Resource",
+      "type": "urn:backend-service:resources:default",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "uris": [
+        "/*"
+      ]
+    },
+    {
+      "name": "Delete Book",
+      "ownerManagedAccess": false,
+      "displayName": "Deleting books by id",
+      "attributes": {},
+      "uris": [
+        "/api/books/delete"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Find Book",
+      "ownerManagedAccess": false,
+      "displayName": "Finding book by id",
+      "attributes": {},
+      "uris": [
+        "/api/books/find/*"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Add Book",
+      "ownerManagedAccess": false,
+      "displayName": "Adding book with request dto",
+      "attributes": {},
+      "uris": [
+        "/api/books/add"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "All Users",
+      "ownerManagedAccess": false,
+      "displayName": "Finding all users",
+      "attributes": {},
+      "uris": [
+        "/api/users/all"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Find User",
+      "ownerManagedAccess": false,
+      "displayName": "Finding user by id",
+      "attributes": {},
+      "uris": [
+        "/api/users/get/*"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Delete User",
+      "ownerManagedAccess": false,
+      "displayName": "Deleting user by id",
+      "attributes": {},
+      "uris": [
+        "/api/users/delete/*"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "All Books",
+      "ownerManagedAccess": false,
+      "displayName": "Finding all books",
+      "attributes": {},
+      "uris": [
+        "/api/books/all"
+      ],
+      "icon_uri": ""
+    }
+  ],
+  "policies": [
+    {
+      "name": "Default Policy",
+      "description": "A policy that grants access only for users within this realm",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+      }
+    },
+    {
+      "name": "Admin Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "fetchRoles": "false",
+        "roles": "[{\"id\":\"backend-service/admin\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "User Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "fetchRoles": "false",
+        "roles": "[{\"id\":\"backend-service/user\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "Author Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "fetchRoles": "false",
+        "roles": "[{\"id\":\"backend-service/author\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "Default Permission",
+      "description": "A permission that applies to the default resource type",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "defaultResourceType": "urn:backend-service:resources:default",
+        "applyPolicies": "[\"Default Policy\"]"
+      }
+    },
+    {
+      "name": "User Permissions",
+      "description": "",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Find Book\",\"Find User\"]",
+        "applyPolicies": "[\"User Policy\"]"
+      }
+    },
+    {
+      "name": "Admin Permission",
+      "description": "",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Find Book\",\"All Users\",\"Delete User\",\"Find User\",\"All Books\"]"
+      }
+    },
+    {
+      "name": "Author Permission",
+      "description": "",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Find Book\",\"Add Book\",\"All Books\",\"Delete Book\"]"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "name": "read",
+      "iconUri": ""
+    },
+    {
+      "name": "write",
+      "iconUri": ""
+    }
+  ],
+  "decisionStrategy": "UNANIMOUS"
+}
