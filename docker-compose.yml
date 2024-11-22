@@ -1,27 +1,42 @@
-version: "3.8"
+version: '3.7'
+
 services:
   postgres:
     image: postgres
-    container_name: bookshop_2
+    container_name: bookshop
     networks:
-      - bookshop-network-2
+      - bookshop-network
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 0211
-      POSTGRES_DB: bookshop_db_2
+      POSTGRES_DB: bookshop_db
     ports:
-      - "9090:5432"
+      - "5050:5432"
+
+  keycloak:
+    image: keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    ports:
+      - "8585:8585"
+    restart: always
+    networks:
+      - bookshop-network
 
   quarkus-app:
     image: quarkus/fido-bookshop-project-jvm
-    container_name: bookshop-project-2
+    container_name: bookshop-project
     networks:
-      - bookshop-network-2
+      - bookshop-network
     ports:
-      - "1010:8080"
+      - "9090:8080"
     environment:
-      DB_HOST: bookshop_2
+      DB_HOST: bookshop
+    depends_on:
+      - postgres
 
 networks:
-  bookshop-network-2:
-    driver: bridge
+  bookshop-network:
+    external: true
